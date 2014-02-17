@@ -16,8 +16,8 @@ Search by **#tags**, **categories** or any text, **select the image** and press 
 Roadmap
 =====
 
-  * Write a better plugin description
+  * Write a better plugin description ( [hectorpalmatellez](https://github.com/hectorpalmatellez)'s idea )
   * Write a tutorial
-  * Add several configurations
-  * Allow multiple selection
+  * Add several configurations 
+  * Allow multiple selection ( [hectorpalmatellez](https://github.com/hectorpalmatellez)'s idea )
   * Add image size 
