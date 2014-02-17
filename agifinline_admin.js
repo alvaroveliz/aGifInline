@@ -28,10 +28,10 @@
                         </ul>\
                         <div class="submitbox">\
                             <div id="wp-link-update">\
-                                <input type="button" id="agifinline-submit" class="button button-disabled" value="Insertar Gif" name="submit" />\
+                                <input type="button" id="agifinline-submit" class="button button-disabled" value="Insert Gif" name="submit" />\
                             </div>\
                             <div id="wp-link-cancel">\
-                                <a href="#" id="agifinline-cancel" class="submitdelete deletion">Cancelar</a>\
+                                <a href="#" id="agifinline-cancel" class="submitdelete deletion">Cancel</a>\
                             </div>\
                         </div>\
                     </form>\
@@ -110,6 +110,10 @@
 
 
             // cierra el thickbox
+            jQuery('#agifinline-form').dialog('close');
+        });
+
+        form.find('#agifinline-cancel').click(function(){
             jQuery('#agifinline-form').dialog('close');
         });
     });
