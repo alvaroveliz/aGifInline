@@ -8,7 +8,6 @@
                 image: url + '/gif.png',
                 onclick: function() {
                     jQuery('#agifinline-form').dialog('open');
-                    //tb_show('Gif Inline', '#TB_inline?inlineId=agifinline-form&amp;height=400px');
                 }
             });
         },
@@ -23,9 +22,9 @@
 
         var form = jQuery('<div id="agifinline-form" title="Alvaro\'s Gif Inline ">\
                     <form>\
-                        <input type="text" id="agifinline-search" name="search" placeholder="Busca una imagen o ingresa una URL" /><br />\
+                        <input type="text" id="agifinline-search" name="search" placeholder="Search an image or insert the URL" /><br />\
                         <ul id="agifinline-result">\
-                            <li id="agifinline-placeholder">Busca imágenes por #tags o por categorias.<br />Powered by <a href="http://giphy.com/">Giphy.com</a></li>\
+                            <li id="agifinline-placeholder">Search gifs using #tags or categories.<br />Powered by <a href="http://giphy.com/">Giphy.com</a></li>\
                         </ul>\
                         <div class="submitbox">\
                             <div id="wp-link-update">\
