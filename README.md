@@ -13,9 +13,11 @@ Install the plugin on wp-content/plugins and then use it pressing the button too
 
 Search by **#tags**, **categories** or any text, **select the image** and press **Insert Gif**
 
-TO-DO
+Roadmap
 =====
 
   * Write a better plugin description
-  * Add configurations
-  * Write a tutorial 8D
+  * Write a tutorial
+  * Add several configurations
+  * Allow multiple selection
+  * Add image size 
