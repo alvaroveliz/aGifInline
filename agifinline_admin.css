@@ -1,0 +1,44 @@
+#agifinline-form {
+    padding: 20px;
+}
+
+#agifinline-search {
+    font-size: 2em;
+    width: 100%;
+}
+
+#agifinline-result {
+    height: 200px;
+    overflow: auto;
+    background: #FFFBCC;
+    padding: 10px;
+}
+
+#agifinline-placeholder {
+    height: 100px;
+    padding: 50px 0 !important;
+    text-align: center;
+    border: 1px dashed #DDD;
+    overflow: hidden;
+    display: block !important;
+}
+
+#agifinline-result li {
+    display: block;
+    display: inline;
+    overflow: hidden;
+    padding: 10px;
+}
+
+#agifinline-result li a {
+} 
+
+#agifinline-result li a:hover img, #agifinline-result li a.active img {
+    border: 1px solid #FF0000;
+    box-shadow: 1px 1px 1px #ddd;
+}
+
+#agifinline-result li a img {
+    width: 46%;
+    border: 1px solid #FFFBCC;
+}
