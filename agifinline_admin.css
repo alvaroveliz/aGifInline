@@ -12,6 +12,7 @@
     overflow: auto;
     background: #FFFBCC;
     padding: 10px;
+    margin-bottom: 10px;
 }
 
 #agifinline-placeholder {
@@ -21,24 +22,34 @@
     border: 1px dashed #DDD;
     overflow: hidden;
     display: block !important;
+    width: 100% !important;
 }
 
-#agifinline-result li {
-    display: block;
-    display: inline;
+#agifinline-result div {
+    display: inline-block;
+    width: 46%;
     overflow: hidden;
     padding: 10px;
+
+}
+#agifinline-result div a {
+    width: 100%;
 }
 
-#agifinline-result li a {
-} 
-
-#agifinline-result li a:hover img, #agifinline-result li a.active img {
+#agifinline-result div a:hover img, #agifinline-result div a.active img {
     border: 1px solid #FF0000;
     box-shadow: 1px 1px 1px #ddd;
 }
 
-#agifinline-result li a img {
-    width: 46%;
+#agifinline-result div a img {
     border: 1px solid #FFFBCC;
+}
+
+#agifinline-load-more {
+    border: 0;
+    padding: 20px;
+    height: 100px;
+    text-align: center;
+    display: inline-block;
+    width: 90% !important;
 }

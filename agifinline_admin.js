@@ -23,9 +23,9 @@
         var form = jQuery('<div id="agifinline-form" title="Alvaro\'s Gif Inline ">\
                     <form>\
                         <input type="text" id="agifinline-search" name="search" placeholder="Search an image or insert the URL" /><br />\
-                        <ul id="agifinline-result">\
-                            <li id="agifinline-placeholder">Search gifs using #tags or categories.<br />Powered by <a href="http://giphy.com/">Giphy.com</a></li>\
-                        </ul>\
+                        <div id="agifinline-result">\
+                            <div id="agifinline-placeholder">Search gifs using #tags or categories.<br />Powered by <a href="http://giphy.com/">Giphy.com</a></div>\
+                        </div>\
                         <div class="submitbox">\
                             <div id="wp-link-update">\
                                 <input type="button" id="agifinline-submit" class="button button-disabled" value="Insert Gif" name="submit" />\
@@ -51,6 +51,43 @@
             closeOnEscape: true
         });
 
+        var searchGif = function(term, offset) {
+            var offset = (typeof(offset) == 'undefined') ? 0 : offset; 
+            $xhr = jQuery.get('http://api.giphy.com/v1/gifs/search?q=' + term + '&offset='+ offset +'&api_key=dc6zaTOxFJmzC');
+            $xhr.done(function(result) {
+                if (offset == 0) {
+                    jQuery('#agifinline-result').html('');    
+                }
+                jQuery('#agifinline-more').remove();
+                if (result.pagination.total_count > 0) {
+                    jQuery.each(result.data, function(k, item) {
+                        img = jQuery('<a href="javascript:void(0);" class="agifinline-image" />').html('<img src="' + item.images.fixed_height.url + '" />');
+                        img.click(function() {
+                            $selected = item.images.original.url;
+                            jQuery('.agifinline-image').removeClass('active');
+                            jQuery(this).addClass('active');
+                            jQuery('#agifinline-submit').removeClass('button-disabled').addClass('button-primary');
+                        });
+                        div = jQuery('<div>').append(img);
+                        jQuery('#agifinline-result').append(div);
+                    });
+
+                    if (result.pagination.total_count > result.pagination.count) {
+                        more = jQuery('<div id="agifinline-more"><a href="javascript:void(0);" id="agifinline-load-more">Load more...</a></li>')
+                        more.click(function(){
+                            jQuery(this).html('<img src="images/loading.gif" />');
+                            searchGif(term, (offset+1));
+                        });
+                        jQuery('#agifinline-result').append(more);
+                    }
+
+                } else {
+                    jQuery('#agifinline-result').html('<div id="agifinline-placeholder">No results, try again.</a></li>');
+                }
+
+            });
+        };
+
         form.find('#agifinline-search').on('keyup', function(event) {
             if (typeof($xhr) != 'undefined') {
                 $xhr.abort();
@@ -70,28 +107,14 @@
                         jQuery(this).addClass('active');
                         jQuery('#agifinline-submit').removeClass('button-disabled').addClass('button-primary');
                     });
-                    li = jQuery('<li>').append(img);
-                    jQuery('#agifinline-result').append(li);
+                    div = jQuery('<div>').append(img);
+                    jQuery('#agifinline-result').append(div);
                 });
             } else {
-                if (jQuery(this).val().length > 3) {
+                if (jQuery(this).val().length > 2) {
 
                     var term = encodeURIComponent(jQuery(this).val());
-                    $xhr = jQuery.get('http://api.giphy.com/v1/gifs/search?q=' + term + '&api_key=dc6zaTOxFJmzC');
-                    $xhr.done(function(result) {
-                        jQuery('#agifinline-result').html('');
-                        jQuery.each(result.data, function(k, item) {
-                            img = jQuery('<a href="javascript:void(0);" class="agifinline-image" />').html('<img src="' + item.images.fixed_height.url + '" />');
-                            img.click(function() {
-                                $selected = item.images.original.url;
-                                jQuery('.agifinline-image').removeClass('active');
-                                jQuery(this).addClass('active');
-                                jQuery('#agifinline-submit').removeClass('button-disabled').addClass('button-primary');
-                            });
-                            li = jQuery('<li>').append(img);
-                            jQuery('#agifinline-result').append(li);
-                        });
-                    })
+                    searchGif(term, 0);
                 }
             }
 
@@ -113,7 +136,7 @@
             jQuery('#agifinline-form').dialog('close');
         });
 
-        form.find('#agifinline-cancel').click(function(){
+        form.find('#agifinline-cancel').click(function() {
             jQuery('#agifinline-form').dialog('close');
         });
     });
