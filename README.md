@@ -11,7 +11,11 @@ How to Use
 
 Install the plugin on wp-content/plugins and then use it pressing the button toolbar.
 
+![Toolbar button](http://alvaroveliz.cl/uploads/2014/02/0715384b119ed940b41c8ef456b47f293b17e439.png)
+
 Search by **#tags**, **categories** or any text, **select the image** and press **Insert Gif**
+
+![Search](http://alvaroveliz.cl/uploads/2014/02/e31462c865694702550dd402a15334d2bf553450.png)
 
 Roadmap
 =====
