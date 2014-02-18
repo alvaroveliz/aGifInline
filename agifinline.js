@@ -1,7 +1,7 @@
 jQuery(document).ready(function() {
     var gif = jQuery('<div id="agifinline" />');
     gif.hide();
-    gif.css('position', 'absolute').css('box-shadow', '1px 1px 2px #444');
+    gif.css('position', 'absolute').css('box-shadow', '1px 1px 2px #444').css('z-index', 1000000);
     jQuery('body').append(gif);
 
     jQuery('a.agifinline').mouseover(function(event) {});
