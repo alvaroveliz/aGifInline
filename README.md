@@ -25,7 +25,7 @@ Roadmap
   * Allow multiple selection ( [hectorpalmatellez](https://github.com/hectorpalmatellez)'s idea )
   * Add image size 
 
-Sites using this plugin
+Webs ites using this plugin
 =====
 
   * [Walabi.cl](http://walabi.cl)
