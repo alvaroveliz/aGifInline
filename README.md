@@ -21,7 +21,11 @@ Roadmap
 =====
 
   * Write a better plugin description ( [hectorpalmatellez](https://github.com/hectorpalmatellez)'s idea )
-  * Write a tutorial
   * Add several configurations 
   * Allow multiple selection ( [hectorpalmatellez](https://github.com/hectorpalmatellez)'s idea )
   * Add image size 
+
+Sites using this plugin
+=====
+[Walabi.cl](http://walabi.cl)
+[192.cl](http://192.cl)
