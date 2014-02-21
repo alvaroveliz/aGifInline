@@ -27,5 +27,6 @@ Roadmap
 
 Sites using this plugin
 =====
-[Walabi.cl](http://walabi.cl)
-[192.cl](http://192.cl)
+
+  * [Walabi.cl](http://walabi.cl)
+  * [192.cl](http://192.cl)
