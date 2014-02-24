@@ -26,6 +26,12 @@
                         <div id="agifinline-result">\
                             <div id="agifinline-placeholder">Search gifs using #tags or categories.<br />Powered by <a href="http://giphy.com/">Giphy.com</a></div>\
                         </div>\
+                        <div id="agifinline-url">\
+                            <p class="howto">Insert destination URL</p>\
+                            <div>\
+                                <label><input type="text" placeholder="http://..." name="agifinline-href" id="agifinline-href"></label>\
+                            </div>\
+                        </div>\
                         <div class="submitbox">\
                             <div id="wp-link-update">\
                                 <input type="button" id="agifinline-submit" class="button button-disabled" value="Insert Gif" name="submit" />\
@@ -38,25 +44,41 @@
                     </div>');
 
         var table = form.find('table');
-        var $xhr;
-        var $selected;
+        var $xhr, $selected, $url;
         form.appendTo('body').hide();
 
         jQuery(form).dialog({
             dialogClass: 'wp-dialog',
             autoOpen: false,
-            height: 370,
+            height: 420,
             width: 650,
             modal: true,
-            closeOnEscape: true
+            closeOnEscape: true,
+            open: function() {
+                var $node = jQuery(tinyMCE.activeEditor.selection.getNode());
+                if ($node.hasClass('agifinline')) {
+                    jQuery('#agifinline-result').html('');
+                    jQuery('#agifinline-href').val($node.attr('href'));
+                    img = jQuery('<a href="javascript:void(0);" class="agifinline-image" />').html('<img src="' + $node.data('gif') + '" />');
+                    img.click(function() {
+                        $selected = $node.data('gif');
+                        jQuery(this).addClass('active');
+                        jQuery('#agifinline-submit').removeClass('button-disabled').addClass('button-primary');
+                    });
+                    div = jQuery('<div>').append(img);
+                    jQuery('#agifinline-result').append(div);
+                }
+            }
         });
 
         var searchGif = function(term, offset) {
-            var offset = (typeof(offset) == 'undefined') ? 0 : offset; 
-            $xhr = jQuery.get('http://api.giphy.com/v1/gifs/search?q=' + term + '&offset='+ offset +'&api_key=dc6zaTOxFJmzC');
+            if (term.length <= 2) return false;
+
+            var offset = (typeof(offset) == 'undefined') ? 0 : offset;
+            $xhr = jQuery.get('http://api.giphy.com/v1/gifs/search?q=' + term + '&offset=' + offset + '&api_key=dc6zaTOxFJmzC');
             $xhr.done(function(result) {
                 if (offset == 0) {
-                    jQuery('#agifinline-result').html('');    
+                    jQuery('#agifinline-result').html('');
                 }
                 jQuery('#agifinline-more').remove();
                 if (result.pagination.total_count > 0) {
@@ -74,9 +96,9 @@
 
                     if (result.pagination.total_count > result.pagination.count) {
                         more = jQuery('<div id="agifinline-more"><a href="javascript:void(0);" id="agifinline-load-more">Load more...</a></li>')
-                        more.click(function(){
+                        more.click(function() {
                             jQuery(this).html('<img src="images/loading.gif" />');
-                            searchGif(term, (offset+1));
+                            searchGif(term, (offset + 1));
                         });
                         jQuery('#agifinline-result').append(more);
                     }
@@ -124,8 +146,9 @@
             selectedText = tinyMCE.activeEditor.selection.getContent();
 
             if (selectedText) {
-                // agrega el contenido al text seleccionado
-                tinyMCE.activeEditor.execCommand('mceReplaceContent', 0, '<a href="' + $selected + '" class="agifinline" />{$selection}</a>');
+                // agrega el contenido al texto seleccionado
+                $url = (jQuery('#agifinline-href').val() != '') ? jQuery('#agifinline-href').val() : $selected;
+                tinyMCE.activeEditor.execCommand('mceReplaceContent', 0, '<a href="' + $url + '" data-gif="' + $selected + '" class="agifinline" />{$selection}</a>');
             } else {
                 // agrega la imágen
                 tinyMCE.activeEditor.execCommand('mceInsertContent', 0, '<img src="' + $selected + '" />');

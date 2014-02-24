@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: aGifInline
- * Plugin URI: https://github.com/alvaroveliz/agifinline
- * Description: This plugin allows you to insert Gifs "inline" with text that you are writting. (Also, you will insert gifs). Using Giphy API, the plugin can search gifs for you, but you can insert externals gifs too.
+ * Plugin URI: http://alvaroveliz.cl
+ * Description: Alvaro's Gif Inline
  * Version: 1.0
  * Author: Alvaro Véliz
  * Author URI: http://alvaroveliz.cl
